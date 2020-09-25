@@ -26,6 +26,10 @@ export const HomeScreen = ({ route, navigation }) => {
         setTotalPrice(totalPrice+parseInt(foundProduct.harga))
     }
 
+    const currencyFormat = (num) => {
+        return 'Rp ' + num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+    };
+
     const onSearchQueryChange = (q) => {
         if(q == ''){
             setFilteredProducts(products);
@@ -48,7 +52,7 @@ export const HomeScreen = ({ route, navigation }) => {
 
                     {/* //? #Soal Bonus, simpan Total Harga dan state.totalPrice di komponen Text di bawah ini */}
                     <Text style={{ textAlign: 'right' }}>Total Harga{'\n'}
-                        <Text style={styles.headerText}>{totalPrice}</Text>
+                        <Text style={styles.headerText}>{ currencyFormat(totalPrice)}</Text>
                     </Text>
                 </View>
                 <View>
