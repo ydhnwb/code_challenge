@@ -30,10 +30,20 @@ export const ListItemComponent = ({ product, onBuyClick }) => {
             />
             <Text style={styles.itemName}>{product.nama}</Text>
             <Text style={styles.itemPrice}>{currencyFormat(parseInt(product.harga))}</Text>
-            <Text style={styles.itemStock}>Sisa stok: {product.stock}</Text>
-            <TouchableOpacity style={styles.itemButton} onPress={buy}>
-                <Text style={styles.buttonText}>BELI</Text>
-            </TouchableOpacity>
+            <Text style={styles.itemStock}>
+                {
+                    product.stock > 0 ? `Sisa stok: ${product.stock}` : "Stok habis"
+                }
+            </Text>
+            {
+                product.stock > 0 ?             
+                <TouchableOpacity style={styles.itemButton} onPress={buy}>
+                    <Text style={styles.buttonText}>BELI</Text>
+                </TouchableOpacity>
+                :
+                null
+            }
+
         </View>
     )
 }

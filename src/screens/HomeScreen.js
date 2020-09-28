@@ -22,7 +22,9 @@ export const HomeScreen = ({ route, navigation }) => {
 
     const onBuyClick = (product) => {
         const foundProduct = products.find( p => p.id == product.id)
-        foundProduct.stock--
+        if(foundProduct.stock > 0){
+            foundProduct.stock--
+        }
         setTotalPrice(totalPrice+parseInt(foundProduct.harga))
     }
 
@@ -43,7 +45,7 @@ export const HomeScreen = ({ route, navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={{ minHeight: 50, width: DEVICE.width * 0.88 + 20, marginVertical: 8 }}>
+            <View style={{ minHeight: 50, width: DEVICE.width * 0.88 + 20, marginVertical: 16 }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Text>Hai, {route.params}
                         {/* //? #Soal 1 Tambahan, Simpan userName yang dikirim dari halaman Login pada komponen Text di bawah ini */}
